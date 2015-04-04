@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
 using System.IO;
+using Windows.Data.Json;
+using System.Threading.Tasks;
 
 namespace WeatherAlert
 {
@@ -14,7 +16,7 @@ namespace WeatherAlert
             get;
             set;
         }
-        public async void getWeather()
+        public async Task<String>  getWeather()
         {
             LocationFetcher locationFetcher = new LocationFetcher();
 
@@ -25,7 +27,11 @@ namespace WeatherAlert
             url.AppendFormat(WeatherApiUrl, location.AreaCode);
             HttpResponseMessage response = await client.GetAsync(url.ToString());
             String weatherInfo = await response.Content.ReadAsStringAsync();
-            
+
+            JsonObject jsonObject = JsonObject.Parse(weatherInfo);
+            JsonValue jsonValue = jsonObject.GetNamedValue("weatherinfo");
+            String weather = jsonValue.GetObject().GetNamedString("weather");
+            return weather;
         }
     }
 }

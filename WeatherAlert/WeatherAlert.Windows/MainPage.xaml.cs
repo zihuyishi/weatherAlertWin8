@@ -28,10 +28,16 @@ namespace WeatherAlert
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             WeatherFetcher fetcher = new WeatherFetcher();
-            fetcher.getWeather();
+            String weather = await fetcher.getWeather();
+
+            var locationFetcher = new LocationFetcher();
+            var location = await locationFetcher.getCurrentCity();
+
+            cityTextBlock.Text = location.City;
+            weatherTextBlock.Text = weather;
         }
     }
 }

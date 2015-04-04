@@ -8,6 +8,23 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Test" Width="200" Height="40" Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1">
+            <Button Content="获取天气" Width="200" Height="40" Click="Button_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock x:Name="cityTextBlock" FontSize="24" TextAlignment="Center" Margin="2"/>
+            <TextBlock x:Name="weatherTextBlock" FontSize="24" TextAlignment="Center" Margin="2"/>
+            
+        </StackPanel>
     </Grid>
 </Page>
