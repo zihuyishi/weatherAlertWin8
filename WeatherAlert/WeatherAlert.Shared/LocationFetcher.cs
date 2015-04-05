@@ -23,7 +23,6 @@ namespace WeatherAlert
             {
                 geo = new Geolocator();
             }
-
             Geoposition pos = await geo.GetGeopositionAsync();
             return pos;
         }

@@ -7,6 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Flyout x:Key="GetLocationFailedFlyout" Placement="Top">
+            <TextBlock Text="获取位置失败"/>
+        </Flyout>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -19,7 +25,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1">
-            <Button Content="获取天气" Width="200" Height="40" Click="Button_Click"/>
+            <Button Content="获取天气" Width="200" Height="40"
+                    FlyoutBase.AttachedFlyout="{StaticResource GetLocationFailedFlyout}"
+                    Click="Button_Click"/>
+            <Button Content="测试Toast" Width="200" Height="40"
+                    Click="TestToast_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock x:Name="cityTextBlock" FontSize="24" TextAlignment="Center" Margin="2"/>
